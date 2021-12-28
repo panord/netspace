@@ -24,7 +24,7 @@ if [ "$cmd" == "enter" ]; then
 fi
 
 if [ "$cmd" == "start" ]; then
-	export NETSPACE=$ns
+	export START="ip netns exec $ns"
 	$USER_HOME/.config/netspace/init.sh
 	exit 0
 elif [ "$cmd" == "stop" ] ; then
