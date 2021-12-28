@@ -37,4 +37,4 @@ ip netns exec $ns ip link set dev $dev up
 ip netns exec $ns ip addr add dev $dev $addr
 ip netns exec $ns ip route add default dev $dev
 
-$USER_HOME/bin/netspace-ctl.sh start $ns
+netspace-ctl.sh start $ns
