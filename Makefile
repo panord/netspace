@@ -1,5 +1,5 @@
 install:
-	cp *.sh /usr/sbin
-	cp -r netspace $(HOME)/.config
+	sudo cp *.sh /usr/sbin
+	cp -fr netspace $(HOME)/.config
 
 .PHONY: install
