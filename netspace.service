@@ -1,0 +1,13 @@
+[Unit]
+Description=Netspace - Embedded network namespace
+Requires=network-online.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=yes
+EnvironmentFile=/etc/netspace/environment
+ExecStartPre=/usr/sbin/netspace-create.sh $(IFACE) $(IPADDR) $(NAME)
+ExecStart=/etc/netspace/init.sh
+
+[Install]
+WantedBy=default.target

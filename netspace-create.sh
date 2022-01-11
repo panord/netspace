@@ -25,7 +25,6 @@ if [ $EUID != 0 ]; then
 	exit 1
 fi
 
-USER_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
 if ! ip netns add $ns ; then
 	echo "Failed to create $ns"
 	exit 1
@@ -36,5 +35,3 @@ ip netns exec $ns ip link set lo up
 ip netns exec $ns ip link set dev $dev up
 ip netns exec $ns ip addr add dev $dev $addr
 ip netns exec $ns ip route add default dev $dev
-
-netspace-ctl.sh start $ns
