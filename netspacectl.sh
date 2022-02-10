@@ -1,6 +1,4 @@
 #!/bin/bash
-ns=$1
-cmd=$2
 USER_HOME=$(getent passwd $SUDO_USER | cut -d: -f6)
 
 usage()
@@ -13,6 +11,8 @@ usage()
 	echo "	enter 	[NAMESPACE]"
 }
 
+cmd=$1
+ns=$2
 if [ -z "$cmd" ]; then
 	usage
 	exit 1
@@ -29,7 +29,7 @@ fi
 
 case $cmd in
 	enter)
-		ip netns exec $2 runuser -u $SUDO_USER bash
+		ip netns exec $ns runuser -u $SUDO_USER bash
 	;;
 	start)
 		export NAME="$ns"
