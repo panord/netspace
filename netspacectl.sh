@@ -32,8 +32,8 @@ case $cmd in
 		ip netns exec $2 runuser -u $SUDO_USER bash
 	;;
 	start)
-		export NETSPACE="$ns"
-		$USER_HOME/.config/netspace/init.sh
+		export NAME="$ns"
+		/etc/netspace/init.sh
 	;;
 	stop)
 		for p in $(sudo ip netns pids $ns); do
