@@ -8,6 +8,8 @@ RemainAfterExit=yes
 EnvironmentFile=/etc/netspace/environment
 ExecStartPre=/usr/sbin/netspace-create.sh $(IFACE) $(IPADDR) $(NAME)
 ExecStart=/etc/netspace/init.sh
+After=network-online.target
+Requires=network-online.target
 
 [Install]
 WantedBy=default.target
