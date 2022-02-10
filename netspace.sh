@@ -28,10 +28,6 @@ case $cmd in
 		dev=$1
 		addr=$2
 		ns=$3
-		if [ -z "$dev" ] || [ -z "$addr" ]; then
-			usage
-			exit 1
-		fi
 
 		if [ -z "$ns" ]; then
 			ns=netspace
@@ -41,11 +37,17 @@ case $cmd in
 			echo "Failed to create $ns, $?"
 			exit 1
 		fi
-		ip link set dev $dev netns $ns
+
 		ip netns exec $ns ip link set lo up
-		ip netns exec $ns ip link set dev $dev up
-		ip netns exec $ns ip addr add dev $dev $addr
-		ip netns exec $ns ip route add default dev $dev
+		if [ ! -z "$dev" ]; then
+			ip link set dev $dev netns $ns
+			ip netns exec $ns ip link set dev $dev up
+			ip netns exec $ns ip route add default dev $dev
+
+			if [ ! -z "$addr" ]; then
+				ip netns exec $ns ip addr add dev $dev $addr
+			fi
+		fi
 	;;
 	del|delete)
 		ns=$1
