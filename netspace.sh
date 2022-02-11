@@ -11,14 +11,14 @@ usage()
 	echo -e "\t~/.config/netspacectl.sh start creation"
 }
 
+if [ -z "$1" ]; then
+	usage
+	exit 0
+fi
+
 if [ $EUID != 0 ]; then
 	echo "Netspace requires elevated privileges"
 	exit 1
-fi
-
-if [ -z "$@" ]; then
-	usage
-	exit 0
 fi
 
 cmd=$1
