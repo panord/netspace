@@ -9,17 +9,20 @@ few services on a network interface without worrying about how those services
 may interact with your other interfaces.
 
 It provides a simple interface for creating a namespace with a single interface,
-sets it up for you, and runs your start scripts.
+sets it up for you, and runs your start scripts. You can ofcourse do further
+setup (or all of it) in the start scripts if you like.
 
-## Install
+## Getting started
 ```
-make install
-netspace-create.sh eth1 192.168.1.99
+sudo make install
+netspace.sh create eth1 192.168.1.99 foo
+netspacectl start foo
 ```
 
 ## Creating a service
-By default, all scripts in `/root/.config/netspace/init.d` are executed with
-`$START` set to a suitable execute command.
+By default, all scripts in `/etc/netspace/init.d` are executed with
+`$START` set to a suitable execute command which will execute the line
+inside the netspace.
 
 Example start script:
 ```
