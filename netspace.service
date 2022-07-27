@@ -7,8 +7,8 @@ Wants=network-online.target
 Type=oneshot
 RemainAfterExit=yes
 EnvironmentFile=/etc/netspace/environment
-ExecStartPre=/usr/sbin/netspace.sh create $(IFACE) $(IPADDR) $(NAME)
-ExecStart=/usr/sbin/netspacectl.sh start $(NAME)
+ExecStartPre=/usr/sbin/netspace.sh create $IFACE $IPADDR $NAME
+ExecStart=/usr/sbin/netspacectl.sh start $NAME
 
 [Install]
 WantedBy=default.target
