@@ -14,7 +14,14 @@ setup (or all of it) in the start scripts if you like.
 
 ## Getting started
 ```
-sudo make install
+make config
+make install # install binaries / config
+systemctl enable netspace
+systemctl start netspace
+```
+
+Or manually create a netspace for one session.
+```
 netspace.sh create eth1 192.168.1.99 foo
 netspacectl start foo
 ```
@@ -31,5 +38,16 @@ Example start script:
 $START /usr/sbin/dnsmasq -x /run/dnsmasq/dnsmasq.pid -u dnsmasq -7 /etc/dnsmasq.d,.dpkg-dist,.dpkg-old,.dpkg-new --local-service
 ```
 
+## Dependencies
+Currently, netspace installes an init.d/ which depends on the packages listed
+below. These are by no means a requirement, and please design your
+`/etc/netspace/init.d` according to your needs. If you want to use these
+services, just use the install command `sudo apt install dnsmasq syslog-ng
+tftpd-hpa` or your package manager equivalent.
 
 
+```
+dnsmasq
+syslog-ng
+tftpd-hpa
+```
