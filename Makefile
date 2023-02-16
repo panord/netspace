@@ -11,9 +11,9 @@ config:
 		fi;							\
 		echo "IFACE=$$iface" > environment;			\
 	fi
-	@read -p "Which network adress to use? (192.168.10.99): " addr; \
+	@read -p "Which network adress to use? (192.168.10.99/24): " addr; \
 	if [ -z "$$addr" ]; then					\
-		addr="192.168.10.99";					\
+		addr="192.168.10.99/24";					\
 	fi;								\
 	echo "IPADDR=$$addr" >> environment
 	@read -p "Name your netspace (netspace): " name;		\
